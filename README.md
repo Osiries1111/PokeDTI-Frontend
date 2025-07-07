@@ -21,7 +21,18 @@ fácilmente y en tiempo real gracias a su arquitectura de aplicación web.
 - Jugadores en el rango de 10-30 años.
 - El juego posee jugabilidad compleja y la UI es intuitiva.
 
+## Tenologías utilizadas
+- TypeScript
+- Axios
+- HTML/CSS
 
+## Equipo de Desarrollo
+- Javier Larré
+- Gonzalo Barrueto
+- Osiris Díaz
+
+
+# Others
 ## Diagrama Entidad-Relación :scroll:
 <!-- Insertamos la imagen ER-Model.png -->
 ![ER-Model](assets/Diagrama%20ER%20Web.drawio.png)
@@ -48,9 +59,6 @@ fácilmente y en tiempo real gracias a su arquitectura de aplicación web.
 ### :art: Logo     
 ![Poke DTI (1) 1](https://github.com/user-attachments/assets/ed5c2223-73f0-4c37-85cb-e03694a0d5dc)
 
-## Equipo de Desarrollo
-- Javier Larré
-- Gonzalo Garrido
-- Osiris Díaz
+
 
 
