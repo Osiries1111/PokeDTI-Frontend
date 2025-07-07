@@ -26,6 +26,10 @@ fácilmente y en tiempo real gracias a su arquitectura de aplicación web.
 - Axios
 - HTML/CSS
 
+## Backend
+- Este es sólo el **frontend** del proyecto
+- El backend se encuentra en el repositorio -> [PokeDTI-Backend](https://github.com/Osiries1111/PokeDTI-Backend)
+
 ## Equipo de Desarrollo
 - Javier Larré -> [JavierLarre](https://github.com/JavierLarre)
 - Gonzalo Barrueto -> [gbarrueto](https://github.com/gbarrueto)
