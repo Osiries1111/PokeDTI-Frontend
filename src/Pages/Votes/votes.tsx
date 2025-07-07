@@ -51,6 +51,7 @@ const Votes: React.FC = () => {
   const [votes, setVotes] = useState<Map<number, boolean>>(
     new Map<number, boolean>()
   ); // Map to track if a user has voted for each user in the lobby
+  const [loadingVote, setLoadingVote] = useState(false);
 
   const currentVote = usersInLobby[index] || {
     id: -1,
@@ -257,21 +258,25 @@ const Votes: React.FC = () => {
   };
 
   const handleLike = async (user_id: number) => {
-
     if (!token || !currentUserInLobby || !lobbyId) return;
-
-    console.log("Like", user_id);
-
-    await createVote(token, currentUserInLobby.id, user_id);
-    setVotes((prevVotes) => new Map(prevVotes).set(user_id, true)); // Update the votes map
-    //handleNext();
+    setLoadingVote(true);
+    try {
+      await createVote(token, currentUserInLobby.id, user_id);
+      setVotes((prevVotes) => new Map(prevVotes).set(user_id, true));
+    } finally {
+      setLoadingVote(false);
+    }
   };
 
   const handleDislike = async (user_id: number) => {
-  if (!token || !currentUserInLobby || !lobbyId) return;
-    console.log("Dislike", user_id);
-    await cancelVote(token, currentUserInLobby.id, user_id);
-    setVotes((prevVotes) => new Map(prevVotes).set(user_id, false)); // Update the votes map
+    if (!token || !currentUserInLobby || !lobbyId) return;
+    setLoadingVote(true);
+    try {
+      await cancelVote(token, currentUserInLobby.id, user_id);
+      setVotes((prevVotes) => new Map(prevVotes).set(user_id, false));
+    } finally {
+      setLoadingVote(false);
+    }
   };
 
   const backgroundStyle = {
@@ -349,6 +354,14 @@ const Votes: React.FC = () => {
         <div className="waiting-for-others-overlay">
           <div className="waiting-for-others-content"> {/* El servidor notificará cuando estén todos listos */}
             <h2>Esperando a que los demás jugadores de {roomData.name} terminen de votar...</h2>
+          </div>
+        </div>
+      )}
+      {loadingVote && (
+        <div className="vote-loading-overlay">
+          <div className="vote-loading-box">
+            <span className="vote-spinner" />
+            <p>Registrando tu voto...</p>
           </div>
         </div>
       )}

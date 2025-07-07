@@ -55,7 +55,13 @@ const UserProfileImgs: React.FC = () => {
     // Empezar la consulta DELETE
 
     axios
-      .delete(`${apiUrl}/users/${currentUser.id}`)
+      .delete(`${apiUrl}/users/${currentUser.id}`, 
+        {
+          headers: {
+            ...(token && { Authorization: `Bearer ${token}` }),
+          },
+        }
+      )
       .then(() => {
         console.log("Perfil eliminado");
         navigate("/logout");

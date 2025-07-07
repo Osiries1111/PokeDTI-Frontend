@@ -138,6 +138,43 @@
   }
 }
 
+/* Aviso de carga al iniciar el juego */
+.game-start-loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.game-start-loading-box {
+  background: #4A768C;
+  color: #f6f8fa;
+  padding: 32px 40px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.game-start-spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #f6f8fa;
+  border-top: 4px solid #7ec6e6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Responsive: pantalla muy pequeña */
 @media (max-width: 480px) {
   .title-lobby {

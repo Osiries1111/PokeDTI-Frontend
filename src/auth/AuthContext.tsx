@@ -7,6 +7,7 @@ export interface AuthContextType {
   currentUser: User | null;
   refreshCurrentUser: () => void;
   scope: string | null;
+  authLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

@@ -20,7 +20,8 @@ const CardReportAdmin: React.FC<Props> = ({ idReport, idUserReport, usernameRepo
 
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const [shouldShowSeeMore, setShouldShowSeeMore] = useState(false);
-
+    const [loading, setLoading] = useState(false);
+    const [loadingDelete, setLoadingDelete] = useState(false);
     const { token } = useRequireAuth();
 
     useEffect(() => {
@@ -38,37 +39,48 @@ const CardReportAdmin: React.FC<Props> = ({ idReport, idUserReport, usernameRepo
         setIsExpanded(!isExpanded);
     };
 
-    const handleReport = () => {
-        try {
-            axios.delete(`${apiUrl}/users/${idUserReported}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            ).then(() => {
-                console.log('User reported successfully');
-            }
-            )
-        }
-        catch (error) {
-            console.error('Error processing report:', error);
-        }
+    const handleReport = async () => {
+        setLoading(true);
+
 
         try {
-            axios.delete(`${apiUrl}/userinlobby/reports/${idReport}`, {
+            await axios.delete(`${apiUrl}/userinlobby/reports/${idReport}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            window.location.reload(); // Reload the page to reflect changes
+
+            try {
+                await axios.delete(`${apiUrl}/users/${idUserReported}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                )
+
+                window.location.reload(); // Reload the page to reflect changes
+
+            }
+            catch (error) {
+                console.error('Error processing report:', error);
+                setLoading(false);
+            }
+
         }
         catch (error) {
             console.error('Error processing report:', error);
+            
         }
+        finally {
+            setLoading(false);
+        }
+
+
     };
 
     const handleDelete = async () => {
+        setLoadingDelete(true);
         try {
             await axios.delete(`${apiUrl}/userinlobby/reports/${idReport}`, {
                 headers: {
@@ -79,6 +91,9 @@ const CardReportAdmin: React.FC<Props> = ({ idReport, idUserReport, usernameRepo
             window.location.reload(); // Reload the page to reflect changes
         } catch (error) {
             console.error('Error deleting report:', error);
+        }
+        finally {
+            setLoadingDelete(false);
         }
 
     };
@@ -110,7 +125,8 @@ const CardReportAdmin: React.FC<Props> = ({ idReport, idUserReport, usernameRepo
                 <button onClick={handleDelete}>Delete</button>
                 <button onClick={handleReport}>Proceder</button>
             </div>
-
+            {loading && <p className="loading-message">Processing report...</p>}
+            {loadingDelete && <p className="loading-message">Deleting report...</p>}
         </div>
     );
 };

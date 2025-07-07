@@ -12,9 +12,10 @@ interface Props {
     statusGame: string;
     maxUsers: number;
     userCount: number;
+    updateGameList: () => void; // Optional prop for updating game list
 }
 
-const CardGameAdmin: React.FC<Props> = ({idGame, nameGame, statusGame, maxUsers, userCount}) => {
+const CardGameAdmin: React.FC<Props> = ({idGame, nameGame, statusGame, maxUsers, userCount, updateGameList}) => {
     const { token } = useRequireAuth(true);
     const [users, setUsers] = useState<FetchedRoomUser[]>([]);
     // Get users in this game
@@ -32,66 +33,68 @@ const CardGameAdmin: React.FC<Props> = ({idGame, nameGame, statusGame, maxUsers,
         };
 
         fetchUsers();
-    }, [token, idGame]);
+    }, [token, idGame, statusGame, userCount]);
 
     const handleDelete = async () => {
-        await axios.delete(`${apiUrl}/lobbies/${idGame}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-        .then((response) => {
+        try {
+            const response = await axios.delete(`${apiUrl}/lobbies/${idGame}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             console.log("Game deleted successfully:", response.data);
-            window.location.reload(); // Reload the page to reflect changes
-        })
-        .catch((error) => {
+            updateGameList();
+        } catch (error) {
             console.error("Error deleting game:", error);
-        });
+        }
     };
 
     const handleReset = async () => {
         if (!token || !idGame) return;
-        await axios.patch(`${apiUrl}/lobbies/${idGame}`, {
-            status: "waitingForPlayers",
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        }).then((response) => {
+        try {
+            const response = await axios.patch(`${apiUrl}/lobbies/${idGame}`, {
+                status: "waitingForPlayers",
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             console.log("Game reset successfully:", response.data);
-            
-            users.forEach((user) => {
-                updateUserInLobbyStatus(token, user.id, "inLobby")
-            }
+
+            // Esperar a que todos los updates de usuarios terminen
+            await Promise.all(
+                users.map((user) =>
+                    updateUserInLobbyStatus(token, user.id, "inLobby")
+                )
             );
-            window.location.reload(); // Reload the page to reflect changes
-        }
-        ).catch((error) => {
+            updateGameList();
+        } catch (error) {
             console.error("Error resetting game:", error);
         }
-        );
     };
-
 
     const handleFinish = async () => {
         if (!token || !idGame || statusGame === "finished") return;
-        await axios.patch(`${apiUrl}/lobbies/${idGame}`, {
-            status: "finished",
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        }).then((response) => {
-            console.log("Game finished successfully:", response.data);
-            users.forEach((user) => {
-                updateUserInLobbyStatus(token, user.id, "exited")
+        try {
+            const response = await axios.patch(`${apiUrl}/lobbies/${idGame}`, {
+                status: "finished",
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
             });
-            window.location.reload(); // Reload the page to reflect changes
-        }
-        ).catch((error) => {
+            console.log("Game finished successfully:", response.data);
+
+            // Esperar a que todos los updates de usuarios terminen
+            await Promise.all(
+                users.map((user) =>
+                    updateUserInLobbyStatus(token, user.id, "exited")
+                )
+            );
+            updateGameList();
+        } catch (error) {
             console.error("Error finishing game:", error);
         }
-        );
     };
 
     return (

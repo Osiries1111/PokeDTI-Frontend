@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 import Index from "./Pages/Index";
@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <SparkleCursor />
-      <BrowserRouter>
+      <HashRouter>
         <AuthProvider>
           <Navbar openLoginModal={openLoginModal} />
           <LoginModal
@@ -81,7 +81,7 @@ function App() {
             <Route path={"*"} element={<NotFound />} />
           </Routes>
         </AuthProvider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }

@@ -40,6 +40,12 @@ const AdminGames: React.FC = () => {
 
   const [lobbies, setLobbies] = useState<Lobby[]>([]);
 
+  const [updateIndex, setUpdateIndex] = useState<number>(0);
+
+  const triggerUpdate = () => {
+    setUpdateIndex((prevIndex) => prevIndex + 1);
+  };
+
   useEffect(() => {
     const fetchRooms = async () => {
       try {
@@ -93,7 +99,7 @@ const AdminGames: React.FC = () => {
       setLobbies(combinedRooms);
     };
     fetchData();
-  }, []);
+  }, [updateIndex, token]);
 
   if (!token) {
     return null;
@@ -119,6 +125,7 @@ const AdminGames: React.FC = () => {
             statusGame={game.status}
             maxUsers={game.maxPlayers}
             userCount={game.userCount}
+            updateGameList={triggerUpdate}
           />
         ))}
       </div>

@@ -46,6 +46,7 @@ const LoungeCards: React.FC<LoungeCardsProps> = ({ refreshKey }) => {
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(true); // solo para mostrar u ocultar
   const [rooms, setRooms] = React.useState<FullRoom[]>([]);
+  const [loading, setLoading] = useState(false);
   const { token, currentUser } = useRequireAuth();
 
   const handleClose = () => {
@@ -129,14 +130,25 @@ const LoungeCards: React.FC<LoungeCardsProps> = ({ refreshKey }) => {
     };
 
     const fetchData = async () => {
+      setLoading(true);
       const fetchedRooms = await fetchRooms();
-      if (!fetchedRooms || fetchedRooms.length == 0) return;
+      if (!fetchedRooms || fetchedRooms.length == 0) {
+        setRooms([]);
+        setLoading(false);
+        return;
+      }
 
       const fetchedRoomHosts = await fetchRoomHosts(fetchedRooms);
-      if (!fetchedRoomHosts) return;
+      if (!fetchedRoomHosts) {
+        setLoading(false);
+        return;
+      }
 
       const fetchedRoomAmounts = await fetchRoomAmount(fetchedRooms);
-      if (!fetchedRoomAmounts) return;
+      if (!fetchedRoomAmounts) {
+        setLoading(false);
+        return;
+      }
 
       // Combine the data into a single array of FullRoom objects
       const combinedRooms: FullRoom[] = fetchedRooms.map(
@@ -158,6 +170,7 @@ const LoungeCards: React.FC<LoungeCardsProps> = ({ refreshKey }) => {
       );
 
       setRooms(combinedRooms);
+      setLoading(false);
     };
     fetchData();
 
@@ -168,7 +181,11 @@ const LoungeCards: React.FC<LoungeCardsProps> = ({ refreshKey }) => {
 
   return (
     <div className="container-cards-lounge">
-      {rooms.length === 0 ? (
+      {loading ? (
+        <div className="loading-rooms-message">
+          <h2 style={{ textAlign: "center" }}>Cargando salas...</h2>
+        </div>
+      ) : rooms.length === 0 ? (
         <div className="no-rooms-message">
           <h2 style={{ textAlign: "center" }}>No hay salas disponibles</h2>
           <p>¡Crea una nueva sala o espera a que alguien más lo haga!</p>

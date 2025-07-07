@@ -49,6 +49,10 @@ const Lobby: React.FC = () => {
 
   const [updateRoomIndex, setUpdateRoomIndex] = useState<number>(0); // Estado para forzar la actualización del componente
 
+  const [loading, setLoading] = useState<boolean>(false); // Estado para controlar la carga de datos
+
+  const [gameStartLoading, setGameStartLoading] = useState<boolean>(false); // Estado para controlar la carga al iniciar el juego
+
   const backgroundStyle = {
     backgroundImage: `url(${backgroundLobby})`,
   };
@@ -100,7 +104,7 @@ const Lobby: React.FC = () => {
     // When all users are ready to change stage, change the lobby status
     newSocket.on("usersConfirmed", ({ newStatus }: { newStatus: string }) => {
 
-      console.log("Users cofirmed. Waiting for host to update lobby status...");
+      //console.log("Users cofirmed. Waiting for host to update lobby status...");
 
       if (isRoomOwner) {
         //console.log(`Todos los usuarios están listos para ${newStatus}, modificando estado del lobby`);
@@ -108,8 +112,6 @@ const Lobby: React.FC = () => {
         updateLobbyStatus(token, lobbyId, newStatus)
           .then(async () => {
             console.log(`Estado del lobby actualizado a: ${newStatus}`);
-
-
             try {
 
               await cancelAllVotesInRoom(token, lobbyId);
@@ -118,22 +120,24 @@ const Lobby: React.FC = () => {
 
             } catch (error) {
               console.error("Error al cancelar las votaciones en el lobby:", error);
+              setGameStartLoading(false);
             }
 
 
           })
           .catch((error) => {
             console.error("Error al actualizar el estado del lobby:", error);
+            setGameStartLoading(false);
           });
       }
     });
 
     newSocket.on("stageChange", async (data: { lobbyId: number, newStatus: string }) => {
-      if (data.lobbyId === lobbyId) {
-        console.log(`Estado del lobby actualizado a: ${data.newStatus}`);
-      }
+      //if (data.lobbyId === lobbyId) {
+      //  console.log(`Estado del lobby actualizado a: ${data.newStatus}`);
+      //}
 
-      console.log("Cambio de etapa recibido:", data.newStatus);
+      //console.log("Cambio de etapa recibido:", data.newStatus);
 
       if (data.newStatus === "dressing") {
         console.log("El juego ha comenzado, redirigiendo a la página de vestir");
@@ -165,7 +169,7 @@ const Lobby: React.FC = () => {
     newSocket.on(
       "youWereKicked",
       (data: { userId: number; roomId: number }) => {
-        console.log("Ha sido expulsado del lobby:", data);
+        //console.log("Ha sido expulsado del lobby:", data);
         if (
           data.userId === currentUserInLobby?.userId &&
           data.roomId === lobbyId
@@ -203,64 +207,48 @@ const Lobby: React.FC = () => {
 
   }, [token, currentUser, currentUserInLobby]);
 
-  // Get users in this room
-  useEffect(() => {
-    if (!currentUser || !token) return;
-
-    if (lobbyId < 0) {
-      console.error("Lobby ID inválido:", lobbyId);
-      return;
-    }
-
-    buildFullRoomUsers(token, lobbyId).then(async (fetchedRoomUsers) => {
-      if (!fetchedRoomUsers) {
-        console.error("No se pudieron obtener los usuarios del lobby.");
-        return;
-      }
-      const myUserInLobby = await getMyUserInLobby(currentUser, token, lobbyId);
-      if (!myUserInLobby) {
-        console.error("No se pudo encontrar el usuario actual en el lobby.");
-        return;
-      }
-      const myFullUser: FullRoomUser = {
-        ...myUserInLobby,
-        username: currentUser.username,
-        profileImage: currentUser.profileImgUrl,
-      };
-      setCurrentUserInLobby(myFullUser);
-    }).catch((error) => {
-      if (error.response && (error.response.status === 404 || error.response.status === 403)) {
-        console.error("Error al obtener los usuarios en el lobby:", error);
-        navigate("/game");
-      }
-    });
-  }, [lobbyId, token, currentUser]);
-
   // Get room data
 
   useEffect(() => {
     if (!token || !currentUser || lobbyId < 0) return;
 
-    fetchRoomData(token, lobbyId).then((fetchedRoomData) => {
-      if (!fetchedRoomData) {
-        console.error("No se pudieron obtener los datos del lobby.");
-        return;
-      }
-      setRoomData(fetchedRoomData);
-      setIsRoomOwner(fetchedRoomData.hostId === currentUser.id);
-      // console.log("Datos del lobby obtenidos:", fetchedRoomData);
-    }).catch((error) => {
-      if (error.response && (error.response.status === 404 || error.response.status === 403)) {
-        console.error("Error al obtener los datos del lobby:", error);
-        alert("Lobby no encontrado o no tienes permiso para acceder.");
-        navigate("/game");
-      } else {
-        console.error("Error inesperado al obtener los datos del lobby:", error);
-        alert("Error al obtener los datos del lobby. Inténtalo de nuevo más tarde.");
-      }
-    }
-    );
+    setLoading(true);
 
+    Promise.allSettled([
+      buildFullRoomUsers(token, lobbyId)
+        .then(async (fetchedRoomUsers) => {
+          if (!fetchedRoomUsers) throw new Error("No se pudieron obtener los usuarios del lobby.");
+          const myUserInLobby = await getMyUserInLobby(currentUser, token, lobbyId);
+          if (!myUserInLobby) throw new Error("No se pudo encontrar el usuario actual en el lobby.");
+          const myFullUser: FullRoomUser = {
+            ...myUserInLobby,
+            username: currentUser.username,
+            profileImage: currentUser.profileImgUrl,
+          };
+          setCurrentUserInLobby(myFullUser);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los usuarios en el lobby:", error);
+          navigate("/game");
+        }),
+
+      fetchRoomData(token, lobbyId)
+        .then((fetchedRoomData) => {
+          if (!fetchedRoomData) throw new Error("No se pudieron obtener los datos del lobby.");
+          setRoomData(fetchedRoomData);
+          setIsRoomOwner(fetchedRoomData.hostId === currentUser.id);
+        })
+        .catch((error) => {
+          if (error.response && (error.response.status === 404 || error.response.status === 403)) {
+            console.error("Error al obtener los datos del lobby:", error);
+            alert("Lobby no encontrado o no tienes permiso para acceder.");
+            navigate("/game");
+          } else {
+            console.error("Error inesperado al obtener los datos del lobby:", error);
+            alert("Error al obtener los datos del lobby. Inténtalo de nuevo más tarde.");
+          }
+        }),
+    ]).finally(() => setLoading(false));
   }, [lobbyId, token, currentUser, updateRoomIndex]);
 
   const handleButton = () => {
@@ -273,13 +261,21 @@ const Lobby: React.FC = () => {
     if (!isRoomOwner && !lobbyIsReady) {
       return;
     }
-
+    setGameStartLoading(true);
     newSocket?.emit("requestStartGame", { roomId: lobbyId });
   };
 
 
   if (!token) {
     return null;
+  }
+
+  if (loading) {
+    return (
+      <div className="lobby-background" style={backgroundStyle}>
+        <h2 style={{ textAlign: "center", marginTop: "40px" }}>Cargando lobby...</h2>
+      </div>
+    );
   }
 
   return (
@@ -306,7 +302,7 @@ const Lobby: React.FC = () => {
       </div>
       <div className="container-play-button">
         {isRoomOwner ? (
-          <button onClick={handleButton} disabled={!lobbyIsReady} className={`play-button ${lobbyIsReady ? "" : "not-ready"}`}>
+          <button onClick={handleButton} disabled={!lobbyIsReady || gameStartLoading} className={`play-button ${lobbyIsReady ? "" : "not-ready"}`}>
             Jugar
             <img src={pokeball} alt="pokeball-sprite" />
           </button>
@@ -334,7 +330,16 @@ const Lobby: React.FC = () => {
           />
         ))}
       </div>
+      {gameStartLoading && (
+        <div className="game-start-loading-overlay">
+          <div className="game-start-loading-box">
+            <span className="game-start-spinner" />
+            <p>Iniciando el juego...</p>
+          </div>
+        </div>
+      )}
       <Music src={LobbyMusic} />
+
     </div>
   );
 };

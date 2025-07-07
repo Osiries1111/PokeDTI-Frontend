@@ -194,6 +194,42 @@
   transform: translateY(-50%) rotate(180deg) scale(0.95);
 }
 
+.vote-loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.vote-loading-box {
+  background: #4A768C;
+  color: #f6f8fa;
+  padding: 18px 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.vote-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f6f8fa;
+  border-top: 3px solid #7ec6e6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: block;
+  margin-bottom: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 /* Responsive general */
 @media (max-width: 1024px) {

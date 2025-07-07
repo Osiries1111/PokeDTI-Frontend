@@ -14,51 +14,31 @@ const Admin: React.FC = () => {
   const [userAmount, setUserAmount] = useState(0);
   const [reportAmount, setReportAmount] = useState(0);
   const [gameAmount, setGameAmount] = useState(0);
-
+  const [loading, setLoading] = useState(true);
   // Count data
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/users/count`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUserAmount(response.data.count);
-      })
-      .catch((error) => {
-        console.error("Error fetching users:", error);
-      });
+    setLoading(true);
+    Promise.allSettled([
+      axios
+        .get(`${apiUrl}/users/count`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => setUserAmount(response.data.count)),
 
-    axios.get(`${apiUrl}/userinlobby/reports`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-    )
-                .then((response) => {
-                    setReportAmount(response.data.length);
-                })
-                .catch((error) => {
-                    console.error("Error fetching report count:", error);
-                }
-    );
+      axios
+        .get(`${apiUrl}/userinlobby/reports`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => setReportAmount(response.data.length)),
 
-    axios
-      .get(`${apiUrl}/lobbies/count`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setGameAmount(response.data.count);
-      })
-      .catch((error) => {
-        console.error("Error fetching game count:", error);
-      });
-  }, []);
+      axios
+        .get(`${apiUrl}/lobbies/count`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => setGameAmount(response.data.count)),
+    ]).finally(() => setLoading(false));
+  }, [token]);
 
   const handleUsers = () => {
     console.log("admin all users");
@@ -103,6 +83,11 @@ const Admin: React.FC = () => {
           </button>
           <h1 className="details-number">{gameAmount}</h1>
         </div>
+        {loading && (
+          <div className="loading-message">
+            <p>Loading data...</p>
+          </div>
+        )}
       </div>
     </div>
   );
