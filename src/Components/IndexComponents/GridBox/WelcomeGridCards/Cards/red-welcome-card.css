@@ -1,0 +1,190 @@
+.red-welcome-card {
+    background: linear-gradient(180deg, rgba(242, 53, 91, 0.9) 0%, rgba(140, 31, 53, 0.9) 100%);
+    border: 0.1rem solid black;
+}
+
+/* Fila 1 */
+
+.red-welcome-card.starters-card {
+    position: relative;
+}
+
+#bulbasaur {
+    position: absolute;
+    top: 0;
+    left: 35%;
+    width: 30%;
+    height: auto;
+}
+
+#charmander {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    width: 30%;
+    height: auto;
+}
+
+#squirtle {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 30%;
+    height: auto;
+}
+
+#pokeball {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 25%;
+    height: auto;
+}
+
+#squirtle,
+#charmander,
+#bulbasaur {
+    transition: transform 0.3s ease-in-out;
+    filter: drop-shadow(0 0.2rem 0.2rem black);
+}
+
+#squirtle:hover,
+#charmander:hover,
+#bulbasaur:hover {
+    transform: scale(1.1);
+}
+
+/* Fila 2 */
+
+.red-welcome-card.pachirisu-dawn-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.red-welcome-card__dress {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#background-dress {
+    width: auto;
+    height: 90%;
+}
+
+#podium-beauty {
+    position: absolute;
+    top: 60%;
+    left: 25%;
+    width: 50%;
+    height: auto;
+    z-index: 1;
+}
+
+#pachirisu,
+#piplup,
+#pikachu {
+    position: absolute;
+    z-index: 1;
+    height: auto;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 30%;
+
+}
+
+#pachirisu {
+    width: 50%;
+    filter: drop-shadow(0 0.3rem 0.2rem rgb(6, 109, 194));
+}
+
+#piplup {
+    width: 50%;
+    filter: drop-shadow(0 0.3rem 0.2rem rgb(98, 161, 212));
+}
+
+#pikachu {
+    width: 70%;
+    filter: drop-shadow(0 0.3rem 0.2rem rgb(216, 202, 9));
+    bottom: 22%;
+}
+
+.red-welcome-card__dawn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+#dawn-landing {
+    width: auto;
+    height: 70%;
+    filter: drop-shadow(0 0.3rem 0.2rem rgb(54, 52, 52));
+}
+
+
+/* Fila 3 */
+
+.red-welcome-card.judges-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#judges-img {
+    width: 80%;
+    height: auto;
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.5rem black;
+}
+
+
+/* Animación fade-in para el Pokémon al cambiar */
+.fade-in {
+  animation: fadeOpacity 0.4s ease-in-out;
+}
+
+@keyframes fadeOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Posición de los botones de flecha */
+.arrow-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 20%;
+    height: auto;
+}
+
+.arrow-image {
+    width: 100%;
+    height: auto;
+}
+
+.left-arrow {
+    left: 5%;
+}
+
+.right-arrow {
+    right: 5%;
+    transform: rotate(180deg) translateY(50%);
+}
+

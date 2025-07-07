@@ -1,0 +1,33 @@
+.grid-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 100%;
+    width: 40%;
+    gap: 0.5rem;
+}
+
+.grid-item {
+    height: 100%;
+    width: 100%;
+}
+
+.red-welcome-card, .feature-welcome-card {
+    height: 100%;
+    width: 100%;
+    border-radius: clamp(0.7rem, 1dvw, 2rem);
+}
+
+@media (max-width: 1024px) {
+
+    .grid-item {
+        padding: 0.1rem;
+        height: 30vw;
+        min-height: unset;
+    }
+
+    .grid-box {
+        width: 100%;
+        height: unset;
+    }
+}

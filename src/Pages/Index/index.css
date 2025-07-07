@@ -1,0 +1,41 @@
+
+
+.index-container {
+
+  background-size: cover;
+  background-position: center;
+  
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex: 1;
+
+  padding: 0.5rem;
+
+}
+
+.index-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40dvw;
+  gap: 1rem;
+}
+
+.index-content p {
+   margin: 0;
+}
+
+.index-content b {
+    color: red;
+}
+
+@media (max-width: 1024px) {
+  .index-content {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 90%;
+  }
+}

@@ -1,0 +1,95 @@
+/* Contenedor principal */
+.container-admin {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #5EADF2;
+  font-family: Itim;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: auto; 
+  width: auto;
+  box-sizing: border-box;
+}
+
+/* Título y botón de salir */
+.title-and-out-user-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.title-users-admin h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.out-to-general-admin-page button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.out-to-general-admin-page button:hover {
+  background-color: #d32f2f;
+}
+
+/* Contenedor de tarjetas de usuario */
+.container-users-admin-general {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablets y más grandes: tarjetas en fila y múltiples columnas */
+@media (min-width: 768px) {
+  .container-users-admin-general {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .title-and-out-user-admin {
+    justify-content: space-between;
+  }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+  .title-users-admin h1 {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .out-to-general-admin-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .out-to-general-admin-page button {
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .container-users-admin-general {
+    padding: 0 1rem;
+  }
+}

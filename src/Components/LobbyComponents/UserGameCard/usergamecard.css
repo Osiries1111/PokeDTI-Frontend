@@ -1,0 +1,412 @@
+.container-card-game-user {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 95vw;
+    max-width: 900px;
+    min-height: 100px;
+    padding: 16px 20px;
+    margin: 10px auto;
+    background-color: #4A768C;
+    border-radius: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color:#f6f8fa;
+    gap: 10px;
+    overflow-x: hidden;  /* Evita scroll horizontal */
+    box-sizing: border-box;
+}
+
+.container-card-game-user .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 6px;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-width: 50px;  /* Para que puedan encoger */
+    max-width: 18vw;
+    gap: 8px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: #D9D9D9;
+    border-radius: 40px;
+
+    /* Control de tamaño fijo pero adaptable */
+    width: clamp(100px, 25vw, 250px);
+    height: clamp(50px, 80px, 100px);
+
+    /* Asegura que se mantenga centrado el texto */
+    padding: 8px 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+.container-card-game-user .profile-text {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: 100px;
+    max-width: 25vw;
+    flex-grow: 2;
+}
+
+/* Imagen perfil */
+.container-card-game-user .profile-pic {
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Títulos con tamaños flexibles */
+.container-card-game-user h2 {
+    margin: 0;
+    font-size: clamp(14px, 2.5vw, 20px); 
+    color: #000000;
+    font-family: Itim;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-card-game-user h3 {
+    margin: 2px 0 0;
+    font-family: Itim;
+    font-size: clamp(9px, 1.5vw, 12px);
+    color: #000000;
+}
+
+/* Botones */
+.buttonoptions,
+.buttonflag,
+.button-select-pokemon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Imágenes de botones con tamaño adaptable */
+.imageoption,
+.imageflag {
+    width: clamp(24px, 5vw, 40px);
+    height: clamp(24px, 5vw, 40px);
+    object-fit: contain;
+}
+
+/* Listón */
+.imageliston {
+    width: clamp(30px, 6vw, 50px);
+    height: auto;
+    object-fit: contain;
+}
+
+/* Pokémon seleccionado */
+.pokemon-select-for-game {
+    width: clamp(40px, 7vw, 60px);
+    height: clamp(40px, 7vw, 60px);
+    object-fit: contain;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background-color: #4A768C;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    align-items: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Estilos para el dialog */
+dialog {
+    border: none;
+    border-radius: 16px;
+    background: #4A768C;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    padding: 0;
+    min-width: 320px;
+    max-width: 90vw;
+    color: #f6f8fa;
+    font-family: Itim, sans-serif;
+    animation: dialogFadeIn 0.2s;
+}
+
+@keyframes dialogFadeIn {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+dialog::backdrop {
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(2px);
+}
+
+/* Contenido del formulario dentro del dialog */
+dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px 24px 20px 24px;
+}
+
+dialog h3 {
+    margin: 0 0 8px 0;
+    color: #fff;
+    font-size: 1.3rem;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+dialog label {
+    display: flex;
+    flex-direction: column;
+    color: #f6f8fa;
+    font-size: 1rem;
+    gap: 4px;
+}
+
+dialog input[type="text"],
+dialog input[type="number"] {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 1rem;
+    background: #f6f8fa;
+    color: #222;
+    margin-top: 2px;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+}
+
+dialog input[type="text"]:focus,
+dialog input[type="number"]:focus {
+    box-shadow: 0 0 0 2px #7ec6e6;
+}
+
+dialog button[type="submit"] {
+    background: #7ec6e6;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+dialog button[type="submit"]:hover {
+    background: #a5e1fa;
+}
+
+dialog button[type="button"] {
+    background: transparent;
+    color: #f6f8fa;
+    border: 1px solid #f6f8fa;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+dialog button[type="button"]:hover {
+    background: #f6f8fa;
+    color: #4A768C;
+}
+
+/* Estilos para el dialog de editar sala */
+.edit-lobby-dialog {
+    border: none;
+    border-radius: 16px;
+    background: #4A768C;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    padding: 0;
+    min-width: 320px;
+    max-width: 90vw;
+    color: #f6f8fa;
+    font-family: Itim, sans-serif;
+    animation: dialogFadeIn 0.2s;
+    z-index: 1001;
+}
+
+@keyframes dialogFadeIn {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.edit-lobby-dialog::backdrop {
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(2px);
+}
+
+/* Contenido del formulario dentro del dialog */
+.edit-lobby-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px 24px 20px 24px;
+}
+
+.edit-lobby-title {
+    margin: 0 0 8px 0;
+    color: #fff;
+    font-size: 1.3rem;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: "PokemonDP" !important;
+}
+
+.edit-lobby-form label {
+    display: flex;
+    flex-direction: column;
+    color: #f6f8fa;
+    font-size: 1rem;
+    gap: 4px;
+}
+
+.edit-lobby-form input[type="text"],
+.edit-lobby-form input[type="number"] {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 1rem;
+    background: #f6f8fa;
+    color: #222;
+    margin-top: 2px;
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+}
+
+.edit-lobby-form input[type="text"]:focus,
+.edit-lobby-form input[type="number"]:focus {
+    box-shadow: 0 0 0 2px #7ec6e6;
+}
+
+.edit-lobby-form button[type="submit"] {
+    background: #FECA05;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+.edit-lobby-form button[type="submit"]:hover {
+    /* change to a good color from FECA05 (yellow) */
+    background: #FDD835; /* A slightly darker yellow */
+}
+
+.edit-lobby-form button[type="button"] {
+    background: transparent;
+    color: #f6f8fa;
+    border: 1px solid #f6f8fa;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.edit-lobby-form button[type="button"]:hover {
+    background: #f6f8fa;
+    color: #4A768C;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+    .container-card-game-user {
+        padding: 12px;
+        width: 100vw;
+        max-width: 100%;
+        gap: 6px;
+    }
+
+    .container-card-game-user .item {
+        min-width: 50px;
+        max-width: 28vw;
+        padding: 2px 4px;
+        gap: 6px;
+    }
+
+    .container-card-game-user .profile-text {
+        min-width: 100px;
+        max-width: 35vw;
+    }
+
+    .container-card-game-user .profile-pic {
+        width: clamp(36px, 8vw, 50px);
+        height: clamp(36px, 8vw, 50px);
+    }
+
+    .container-card-game-user h2 {
+        font-size: clamp(10px, 3vw, 14px);
+    }
+
+    .container-card-game-user h3 {
+        font-size: clamp(8px, 2vw, 11px);
+    }
+
+    .imageoption,
+    .imageflag {
+        width: clamp(20px, 8vw, 30px);
+        height: clamp(20px, 8vw, 30px);
+    }
+
+    .imageliston {
+        width: clamp(30px, 10vw, 40px);
+    }
+
+    .pokemon-select-for-game {
+        width: clamp(36px, 10vw, 50px);
+        height: clamp(36px, 10vw, 50px);
+    }
+}

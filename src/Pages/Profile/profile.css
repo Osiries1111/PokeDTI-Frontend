@@ -1,0 +1,36 @@
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: linear-gradient(to bottom left,#5EADF2, #D9B88F);
+  background-color: #4A768C;
+}
+
+.profile-content {
+  width: min(90vw, 1920px);
+  min-width: 300px;
+  height: min(40vw, 1080px);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+
+  .profile-container {
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .profile-content {
+    flex-direction: column;
+    height: auto;
+  
+    gap: 2rem;
+    min-height: unset;
+
+  }
+}
+

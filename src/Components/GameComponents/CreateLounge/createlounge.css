@@ -1,0 +1,176 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.create-lounge-container {
+    background-color: #1D2D5D;
+    border-radius: 24px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: popIn 0.3s ease-in-out;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.out-button-crete-lounge {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-color: #EDEDED;
+    color: #1E1E1E;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.out-button-crete-lounge:hover {
+    background-color: #d52c4d;
+    color: white;
+    transform: scale(1.1);
+}
+
+.create-lounge-container h1 {
+    font-size: 1.6rem;
+    color: #3d2c1f;
+    padding: 0.3rem;
+    font-family: 'Itim', cursive;
+}
+
+.pikachu-create-sala {
+    width: 140px;        /* Antes: 100px */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1.2rem;
+}
+
+
+.form-create-room {
+    background-color: #5EADF2;
+    border-radius: 24px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-create-room label {
+    font-weight: bold;
+    color: #3d2c1f;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    text-align: left;
+}
+
+.form-create-room input[type="text"], input[type="number"] {
+    padding: 0.6rem 0.9rem;
+    border: 2px solid #f4d3a1;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.form-create-room input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #f23558;
+    outline: none;
+}
+
+.form-create-room button[type="submit"] {
+    background-color: #1E1E1E;
+    color: white;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.form-create-room button[type="submit"]:hover {
+    background-color: #333333;
+    transform: scale(1.03);
+}
+
+.open-modal-button {
+    padding: 0.6rem 1.1rem;
+    background-color: #FECA05;
+    color: #1E1E1E;
+    font-size: 1rem;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Itim', cursive;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.porygon{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.open-modal-button:hover {
+    background-color: #B1931F;
+    transform: scale(1.05);
+}
+
+.title-room-up {
+    background-color: #EDEDED;
+    border-radius: 16px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    .create-lounge-container {
+        padding: 1.2rem;
+        max-width: 90%;
+    }
+
+    .pikachu-create-sala {
+        width: 90px;
+    }
+
+    .create-lounge-container h1 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .pikachu-create-sala {
+        width: 110px;
+    }
+}

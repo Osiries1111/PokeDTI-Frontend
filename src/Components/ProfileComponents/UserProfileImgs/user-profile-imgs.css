@@ -1,0 +1,160 @@
+.user-profile-imgs {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile-imgs__profile-img-container {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.user-profile-imgs__profile-img {
+  border-radius: 50%;
+  width: 25%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+
+  border: 2px solid #feca05;
+
+  box-shadow: 0 0 10px rgb(255, 251, 0);
+}
+
+.user-profile-imgs__fav-pokemon-container {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 1.5rem;
+}
+
+.user-profile-imgs__title {
+  font-size: clamp(0.8rem, 2vw, 3rem);
+  color: white;
+}
+
+.user-profile-imgs__fav-pokemon-img {
+  width: 40%;
+  transition: transform 0.3s ease;
+}
+
+.user-profile-imgs__fav-pokemon-img:hover {
+  transform: scale(1.05);
+}
+
+.user-profile-imgs__editto-container {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+}
+
+.user-profile-imgs__editto-container p {
+  font-family: "PokemonDP";
+}
+
+
+.user-profile-imgs__editto-button {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: clamp(1rem, 5vw, 3rem);
+  background-color: #feca05;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  font-size: clamp(0.5rem, 1.2vw, 1.5rem);
+}
+
+.user-profile-imgs__editto-button:hover {
+  transform: scale(1.05);
+}
+
+.user-profile-imgs__ditto-img {
+  width: 25%;
+}
+
+.user-profile-imgs__delete-button {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: clamp(1rem, 5vw, 3rem);
+  background-color: #F23558;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.user-profile-imgs__delete-button:hover {
+  transform: scale(1.05);
+}
+
+.user-profile-imgs__delete-button p {
+  font-size: clamp(0.5rem, 1vw, 1.5rem);
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .user-profile-imgs {
+    width: 100%;
+    height: 40dvw;
+    flex-direction: row;
+  }
+
+  .user-profile-imgs__profile-img-container {
+    width: 30%;
+    height: 100%;
+  }
+
+  .user-profile-imgs__profile-img {
+    width: 50%;
+    border: 1px solid #feca05;
+    box-shadow: 0 0 2px rgb(255, 255, 0);
+    box-sizing: content-box;
+  }
+  
+  .user-profile-imgs__fav-pokemon-container {
+    width: 40%;
+    height: 100%;
+
+    justify-content: space-evenly;
+
+    gap: 0.5rem;
+  }
+
+  .user-profile-imgs__fav-pokemon-img {
+    width: 40%;
+  }
+
+  .user-profile-imgs__editto-container {
+    width: 30%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .user-profile-imgs__editto-button {
+    width: 70%;
+    height: 30%;
+  }
+
+  .user-profile-imgs__delete-button {
+    width: 70%;
+    height: 30%;
+  }
+}

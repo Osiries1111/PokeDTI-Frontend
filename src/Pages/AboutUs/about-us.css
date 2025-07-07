@@ -1,0 +1,35 @@
+.about-us {
+    background: linear-gradient( #5EADF2,rgb(29, 53, 65));
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.about-us__header-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3rem;
+}
+
+.about-us__header-img .pixelated {
+    height: 100%;
+    width: 300px;
+
+    transition: box-shadow 0.4s filter 0.4s;
+}
+
+.about-us__cards {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 1rem;
+    gap: 2rem;
+
+}
+
+.about-us__header-img .pixelated:hover  {
+        filter: drop-shadow(0 8px 12px rgba(255,255,255,0.5)) 
+                drop-shadow(0 -8px 20px rgba(255,255,255,0.3));
+}

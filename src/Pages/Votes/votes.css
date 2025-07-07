@@ -1,0 +1,296 @@
+/* Base */
+.container-page-votes {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  flex: 1;
+  height: auto;
+  width: auto;
+
+  
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  
+}
+
+.up-title-vo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-family: Itim;
+  font-size: 2.5rem;
+  color: #1E1E1E;
+  text-align: center;
+  pointer-events: none; 
+}
+
+.textBox-rules-vo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Título y botones */
+.container-title-buttons-votes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.container-title-buttons-votes > div {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-title-buttons-votes h1 {
+  color: black;
+  font-size: 2rem;
+  margin-top: -2rem;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  word-break: break-word;
+}
+
+.container-title-buttons-votes img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+}
+
+.terminar-button {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  padding-right: 2rem;
+}
+
+.container-title-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.title-box {
+  position: relative;
+  width: 300px; 
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-title-center h1 {
+  color: black;
+  font-size: 2.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.container-title-center img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
+.title-background {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.title-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Carrusel */
+.container-pokemon-dress-vote {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  min-height: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap;
+}
+
+.vote-card-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Flechas */
+.arrow-votes-left,
+.arrow-votes-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Ajuste de transformación completa aquí */
+.arrow-votes-left {
+  left: 0;
+}
+
+.arrow-votes-right {
+  right: 0;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Efectos hover y active */
+.arrow-votes-left:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+.arrow-votes-left:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.arrow-votes-right:hover {
+  transform: translateY(-50%) rotate(180deg) scale(1.2);
+}
+.arrow-votes-right:active {
+  transform: translateY(-50%) rotate(180deg) scale(0.95);
+}
+
+
+/* Responsive general */
+@media (max-width: 1024px) {
+  .container-title-buttons-votes {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .container-title-buttons-votes h1 {
+    font-size: 1.8rem;
+  }
+
+  .container-title-center h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-page-votes {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .container-title-buttons-votes {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .container-title-buttons-votes h1 {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+
+  .container-title-center h1 {
+    font-size: 1.6rem;
+  }
+
+  .container-title-center img {
+    max-width: 180px;
+  }
+
+  .title-box {
+    width: 250px;
+  }
+
+  .title-text {
+    font-size: 2rem;
+  }
+
+  .container-pokemon-dress-vote {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .arrow-votes-left,
+  .arrow-votes-right {
+    width: 40px;
+  }
+
+  .terminar-button {
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-text {
+    font-size: 1.5rem;
+  }
+
+  .container-title-center h1 {
+    font-size: 1.3rem;
+  }
+
+  .container-title-buttons-votes h1 {
+    font-size: 1.2rem;
+  }
+
+  .container-title-center img {
+    max-width: 150px;
+  }
+}
+
+@keyframes fade-slide-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.vote-card-animated {
+  animation: fade-slide-in 0.4s ease-out;
+}

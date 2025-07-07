@@ -1,0 +1,156 @@
+.lobby-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 2rem;   /* O ajusta según tu necesidad */
+  box-sizing: border-box;
+  
+}
+
+
+.title-container-lobby {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+  min-height: auto;
+  height: auto;
+  box-sizing: border-box;
+  gap: 10px;
+  
+}
+
+.title-left,
+.title-center,
+.title-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo del título centrado */
+.title-lobby {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  
+}
+
+/* Estilo del texto a la izquierda */
+.total-people-on-game {
+  font-size: 25px;
+  font-family: Itim;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Estilo del botón */
+.container-play-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.container-play-button .play-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #FECA05;
+    color: #000000;
+    border: none;
+    padding: 16px 32px;  /* Más grande */
+    font-size: 20px;     /* Más grande */
+    font-weight: 700;
+    font-family: Itim;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.5);
+}
+
+.container-play-button .play-button.not-ready {
+    background-color: #FFCDD2;
+    color: #000000;
+    cursor: not-allowed;
+
+}
+
+.container-play-button .play-button.not-ready:hover {
+    background-color: #FFCDD2; /* Sin cambio de color al pasar el mouse */
+}
+
+.container-play-button .play-button:hover {
+    background-color: #d32f2f;
+}
+
+.container-play-button .play-button img {
+    width: 40px;    /* Imagen más grande */
+    height: 40px;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* Responsive: pantalla media */
+@media (max-width: 768px) {
+  .title-container-lobby {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 15px 10px;
+  }
+
+  .title-left,
+  .title-center,
+  .title-right {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .title-lobby {
+    font-size: 24px;
+    color: #FECA05;
+  }
+
+  .total-people-on-game {
+    font-size: 16px;
+  }
+
+  .container-play-button button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Responsive: pantalla muy pequeña */
+@media (max-width: 480px) {
+  .title-lobby {
+    font-size: 20px;
+  }
+
+  .total-people-on-game {
+    font-size: 14px;
+  }
+
+  .container-play-button button {
+    font-size: 13px;
+    padding: 6px 10px;
+    gap: 6px;
+  }
+}

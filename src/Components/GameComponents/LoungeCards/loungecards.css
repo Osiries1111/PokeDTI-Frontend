@@ -1,0 +1,7 @@
+.container-cards-lounge {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Espacio entre tarjetas, opcional */
+    align-items: center; /* Centra horizontalmente cada tarjeta */
+    padding: 2rem;
+}

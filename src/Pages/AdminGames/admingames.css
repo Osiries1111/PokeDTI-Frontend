@@ -1,0 +1,10 @@
+
+.container-admin{
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: auto; 
+  width: auto;
+  flex: 1;
+}
+
+

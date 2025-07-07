@@ -1,0 +1,130 @@
+/* Contenedor de toda la tarjeta */
+.container-user-admin-details {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Itim;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+  min-height: 400px; /* Altura fija para uniformidad */
+  justify-content: space-between;
+}
+
+/* Hover */
+.container-user-admin-details:hover {
+  transform: translateY(-4px);
+}
+
+/* Títulos e información */
+.id-report-admin,
+.user-name-admin,
+.email-user-admin {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin: 0.5rem 0;
+  word-break: break-word;
+}
+
+/* Descripción con truncado */
+.description-user-admin {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 1rem 0;
+  text-align: center;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  min-height: 4.2em; /* asegura altura aunque no se rellene */
+  transition: max-height 0.3s ease;
+}
+
+.description-user-admin.expanded {
+  -webkit-line-clamp: unset;
+  max-height: none;
+  display: block;
+}
+
+/* Botones */
+.container-user-admin-details > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  width: 100%;
+  max-width: 200px;
+}
+
+.container-user-admin-details button {
+  background-color: #e53935;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.container-user-admin-details button:hover {
+  background-color: #c62828;
+}
+
+.container-user-admin-details button:nth-child(2) {
+  background-color: #2196f3;
+}
+
+.container-user-admin-details button:nth-child(2):hover {
+  background-color: #1976d2;
+}
+
+/* Ver más */
+.see-more-button {
+  background: none;
+  border: none;
+  color: #2196f3;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: Itim;
+  margin-top: -0.3rem;
+}
+
+.dressImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container-user-admin-details {
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  .id-report-admin,
+  .user-name-admin,
+  .email-user-admin,
+  .description-user-admin {
+    font-size: 0.95rem;
+  }
+
+  .container-user-admin-details button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}

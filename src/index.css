@@ -1,0 +1,30 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  cursor: url('/cursor-_2_.png') 4 4, auto;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+
+/* For pixelart images */
+
+img.pixelated {
+  image-rendering: pixelated;
+}
+
+@font-face {
+  font-family: "PokemonDP";
+  src: url('./assets/fonts/PokemonDPPro.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

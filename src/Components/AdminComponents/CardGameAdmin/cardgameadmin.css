@@ -1,0 +1,24 @@
+.container-user-admin-details {
+     min-height: 380px;
+     justify-content: space-between;
+}
+
+.id-game-admin,
+.game-name-admin,
+.status-game-admin,
+.conected-game-admin,
+.users-in-game-admin {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.buttons-admin-game button[disabled] {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transition: none;
+}
+
+.buttons-admin-game button[disabled]:hover {
+  background-color: #ccc;
+}

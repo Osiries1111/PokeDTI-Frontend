@@ -1,0 +1,140 @@
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    min-height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    flex: 1;
+}
+
+
+.textBox-rules {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1120px;
+}
+
+.boxes-rules {
+    background-color: #F23558;
+    border-radius: 40px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.box-detail-rules {
+    background-color: #f9e4c8; 
+    border-radius: 20px;
+    margin: 1rem 0;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    font-size: clamp(0.6rem, 1.5vw, 1.2rem);
+}
+
+.box-detail-rules[open] {
+    background-color: #f4d3a1; 
+    transform: scale(1.01);
+}
+
+.box-detail-rules:hover {
+    cursor: pointer;
+    background-color: #f4d3a1;
+}
+
+.title-detail-sub-rule {
+    font-family: 'Itim', cursive;
+    font-size: 1.4rem;
+    color: #3d2c1f;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.title-detail-sub-rule:hover {
+    color: #a65e1a;
+    text-decoration: underline;
+}
+
+
+.boxes-rules:hover {
+    background-color: #d52c4d;
+    transform: scale(1.01);
+}
+
+.title-box {
+    position: relative;
+    width: 300px; 
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-rules {
+    font-family: 'Itim', cursive;
+    font-size: 2.5rem;
+    color: #EDEDED;
+    margin-bottom: 0.5rem;
+}
+
+.up-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Itim;
+    font-size: 2.5rem;
+    color: #1E1E1E;
+    text-align: center;
+    pointer-events: none; 
+}
+
+.boxes-rules > p {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.secundary-container-rules {
+    background-color: #f9e4c8;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .title-rules {
+        font-size: 2rem;
+    }
+
+    .boxes-rules {
+        padding: 1rem;
+    }
+
+    .textBox-rules {
+        max-width: 100%;
+    }
+}

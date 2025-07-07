@@ -1,0 +1,98 @@
+.container-vote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.pokemon-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pokemon-image img {
+  width: 100%;
+  max-width: 280px; 
+  height: auto;
+  border-radius: 12px;
+}
+
+.buttons-vote {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0;
+}
+
+.buttons-vote button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%;
+  padding: 0.4rem;
+}
+
+.buttons-vote img {
+  width: 45px;
+  height: auto;
+}
+
+/* Efectos */
+.buttons-vote button:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #00000066;
+}
+
+.buttons-vote button:first-child:hover {
+  background-color: rgba(255, 85, 85, 0.15);
+}
+
+.buttons-vote button:last-child:hover {
+  background-color: rgba(85, 255, 100, 0.15);
+}
+
+.buttons-vote button:active {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+
+
+@media (max-width: 768px) {
+  .container-vote {
+    max-width: 90%; 
+    padding: 0.5rem;
+  }
+
+  .pokemon-image img {
+    max-width: 240px;
+  }
+
+  .buttons-vote {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .buttons-vote img {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-image img {
+    max-width: 220px;
+  }
+
+  .buttons-vote img {
+    width: 36px;
+  }
+
+  .buttons-vote {
+    gap: 1rem;
+  }
+}

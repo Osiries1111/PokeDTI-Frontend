@@ -1,0 +1,318 @@
+.edit-modal__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow-y: auto;
+    padding-block: 2rem;
+    box-sizing: border-box;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.edit-modal__container--open {
+    opacity: 1;
+    pointer-events: auto;
+    animation: modal-fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modal-fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(-30px);
+        filter: blur(4px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.02) translateY(5px);
+        filter: blur(0.5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.edit-modal__content {
+    background-color: #1D2D5D;
+    border: black solid 0.1rem;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+
+    
+}
+
+.edit-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.edit-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.edit-modal__close img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.edit-modal__close img:hover {
+    transform: scale(1.1);
+}
+
+/* titulo "editar" */
+
+.edit-modal__title {
+
+    background-color: white;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+
+    border-radius: 2rem;
+    padding: 1rem;
+
+    width: 50%;
+}
+
+/* profile image */
+
+.edit-modal__profile-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.edit-modal__profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid white;
+    cursor: pointer;
+
+    /* Darken image when hovered */
+    transition: filter 0.3s ease-in-out;
+}
+
+
+
+.edit-modal__profile-edit-text {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    background-color: transparent;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    margin:0;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    user-select: none;
+    pointer-events: none;
+}
+
+.edit-modal__profile-img-container:hover .edit-modal__profile-edit-text {
+    opacity: 1;
+}
+
+.edit-modal__profile-img-container:hover .edit-modal__profile-img {
+    filter: brightness(0.4);
+}
+
+.edit-modal__form {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 2rem;
+    background-color: #5EADF2;
+
+    padding: 1rem;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.edit-modal__input-title {
+    font-size: 0.8rem;
+}
+
+.edit-modal__password__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 0.5rem;
+}
+
+.edit-modal__password__container input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.edit-modal__edit-password-btn {
+    background-color: #FECA05;
+    border-radius: 0.66rem;
+    font-size: 1rem;
+    font-family: "PokemonDP";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.68rem 1rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-modal__edit-password-btn:hover {
+    background-color: #f0b800;
+}
+
+.edit-modal__edit-password-btn.editting {
+    background-color: #f23558;
+    color: black;
+    font-weight: bold;
+}
+
+.edit-modal__edit-password-btn.editting:hover {
+    background-color: #e02a4d;
+}
+
+.edit-modal__select-pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.1rem;
+}
+
+.edit-modal__favorite-pokemon-text {
+    margin: 0;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.fav-pokemon-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+}
+
+.edit-modal__favorite-pokemon-img {
+    width: 70px;
+    height: 70px;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.edit-modal__favorite-pokemon-img:hover {
+    transform: scale(1.1);
+}
+
+.edit-modal__save-btn {
+    width: 64%;
+    align-self: center;
+    background-color: #FECA05;
+    border-radius: 1rem;
+    max-height: 50px;
+    font-size: 1rem;
+    font-family: "PokemonDP";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.edit-modal__form input[type="text"],
+.edit-modal__form input[type="password"] {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+
+    .edit-modal__container {
+        justify-content: center;
+    }
+
+    .edit-modal__content {
+        width: 90%;
+    }
+
+    .edit-modal__profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .edit-modal__title {
+        width: 30%;
+        font-size: 0.5rem;
+    }
+
+    .edit-modal__input-title {
+        font-size: 0.6rem;
+    }
+
+    .edit-modal__fav-pokemon-title {
+        font-size: 0.7rem;
+    }
+
+    .edit-modal__favorite-pokemon-text {
+        font-size: 0.6rem;
+    }
+
+    .edit-modal__save-btn {
+        width: 80%;
+        padding: 0 0.5rem;
+        font-size: 0.8rem;
+        min-width: auto; 
+    }
+}

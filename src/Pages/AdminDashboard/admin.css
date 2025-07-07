@@ -1,0 +1,136 @@
+/* Contenedor principal */
+.accordions-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #5EADF2;
+  font-family: Itim;
+  flex: 1;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: auto; 
+  width: auto;
+}
+
+/* Mensaje de bienvenida */
+.bienvenida-admin h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-family: Itim;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Contenedor de los botones/cards */
+.container-redirect-admin {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+}
+
+/* Cada tarjeta resumen */
+.resumen-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 250px;
+  min-width: 240px;
+  max-width: 300px;
+  transition: transform 0.2s ease;
+}
+
+.resumen-admin:hover {
+  transform: translateY(-2px);
+}
+
+/* Botones */
+.button-admin {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: Itim;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+.button-admin:hover {
+  background-color: #1976d2;
+}
+
+/* Número de detalles */
+.details-number {
+  margin-top: 0.75rem;
+  font-size: 2rem;
+  color: #444;
+}
+
+/* ====================== */
+/*       RESPONSIVE       */
+/* ====================== */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
+  .bienvenida-admin h1 {
+    font-size: 2.5rem;
+  }
+
+  .container-redirect-admin {
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+  }
+
+  .resumen-admin {
+    width: 100%;
+    max-width: 90%;
+    
+  }
+}
+
+/* Pantallas pequeñas (celulares) */
+@media (max-width: 480px) {
+  .bienvenida-admin h1 {
+    font-size: 2rem;
+  }
+
+  .resumen-admin {
+    max-width: 260px;
+    min-width: 100px;
+    padding: 0.4rem 0.6rem;
+    min-height: 50px;
+  }
+
+  .button-admin {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .details-number {
+    font-size: 1.2rem;
+  }
+
+  .resumen-admin h2,
+  .resumen-admin p {
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+  }
+}
+
+
+

@@ -1,0 +1,176 @@
+.games {
+    background: linear-gradient( #5EADF2, pink);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    min-height: auto; 
+    width: auto;
+    background-attachment: fixed;
+    background-size: cover;
+    flex: 1;
+}
+
+/* Título y botón de crear sala */
+.title-and-newgame {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centra horizontalmente el contenido */
+  align-items: center;
+  gap: 20px; /* Espacio entre el título y CreateLounge */
+  flex-wrap: wrap; /* Para que CreateLounge se mueva abajo en pantallas pequeñas */
+  margin-top: 20px;
+}
+
+.title-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 450px; 
+  margin: 0 auto; 
+  aspect-ratio: 3 / 1; 
+}
+
+.titlefundindexgames {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.titleHeaderIndexGames {
+  position: absolute;
+  font-family: Itim;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(1.5rem, 4vw, 2.5rem); /* Escalable y adaptable */
+  color: #1E1E1E;
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+  pointer-events: none;
+}
+
+.refresh-button {
+  background-color: black;
+  color: #FECA05;
+  border: none;
+  cursor: pointer;
+  border-radius: 3rem;
+  padding: 0.4rem 2rem;
+}
+.refresh-button .refresh-icon {
+    height: auto;
+    width: 3rem;
+}
+.refresh-button:hover {
+  background-color: #FECA05;
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Contenedor de las salas y gengars */
+.games-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  position: relative;
+}
+
+/* Gengar izquierdo y derecho: columna fija */
+.gengar-container-1,
+.gengar-container-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 100px; /* queda fijo al hacer scroll */
+}
+
+/* Imágenes de Gengar */
+.gengar-container-1 img,
+.gengar-container-2 img {
+  width: 100px;
+  height: auto;
+}
+
+/* Contenedor central de las salas */
+.roomsIndex {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title-and-newgame {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .games-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gengar-container-1,
+  .gengar-container-2 {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .gengar-container-1 img,
+  .gengar-container-2 img {
+    width: 60px;
+  }
+}
+
+.burbujas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* No bloquea clics */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ghost-floating {
+  position: absolute;
+  opacity: 0.3;
+  animation: floatUp 8s linear infinite;
+  filter: drop-shadow(0 0 10px #000); /* Suaviza el borde */
+  width: 80px;
+  height: auto;
+}
+
+/* Animación */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-200px) scale(1.05);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-600px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* Posiciones y delays */
+.ghost1 { left: 10%; bottom: -100px; animation-delay: 0s; }
+.ghost2 { left: 30%; bottom: -120px; animation-delay: 2s; }
+.ghost3 { left: 50%; bottom: -140px; animation-delay: 4s; }
+.ghost4 { left: 70%; bottom: -160px; animation-delay: 6s; }
+.ghost5 { left: 85%; bottom: -180px; animation-delay: 1s; }
+
+

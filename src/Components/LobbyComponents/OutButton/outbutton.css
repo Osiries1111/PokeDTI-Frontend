@@ -1,0 +1,37 @@
+.container-out-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.container-out-button button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #FECA05;
+    color: #000000;
+    border: none;
+    padding: 16px 32px;  /* Más grande */
+    font-size: 20px;     /* Más grande */
+    font-weight: 700;
+    font-family: Itim;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.5);
+}
+
+.container-out-button button:hover {
+    background-color: #d32f2f;
+}
+
+.container-out-button button img {
+    width: 40px;    /* Imagen más grande */
+    height: 40px;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+}
