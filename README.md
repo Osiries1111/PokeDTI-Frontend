@@ -27,9 +27,9 @@ fácilmente y en tiempo real gracias a su arquitectura de aplicación web.
 - HTML/CSS
 
 ## Equipo de Desarrollo
-- Javier Larré
-- Gonzalo Barrueto
-- Osiris Díaz
+- Javier Larré -> [JavierLarre](https://github.com/JavierLarre)
+- Gonzalo Barrueto -> [gbarrueto](https://github.com/gbarrueto)
+- Osiris Díaz -> [Osiries1111](https://github.com/Osiries1111)
 
 
 # Others
